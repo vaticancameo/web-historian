@@ -17,22 +17,21 @@ exports.serveAssets = function(res, asset, callback) {
 
 exports.respond = function(res, path, status) {
   status = status || 200;
-  console.log(path.slice(1));
-  if(archive.isUrlArchived(path.slice(1))){
-    path = archive.paths.archivedSites + path;
-  } else {
+  var data;
+  // console.log(path.slice(1));
+  if(path === '/'){
     path = archive.paths.loading;
+    data = fs.readFileSync(path, 'utf8');
+  } else if(archive.isUrlArchived(path.slice(1))){
+    path = archive.paths.archivedSites + path;
+    data = fs.readFileSync(path, 'utf8');
+  } else {
+    // path = archive.paths.loading;
+    status = 404;
+
 
   }
   res.writeHead(status, headers);
-
-  var data = fs.readFileSync(path, 'utf8');
-  // var data = fs.readFile(path, function(err, data){
-  //   if(err) {
-  //     throw err;
-  //   }
-  //   return data;
-  // });
   res.end(data);
 };
 

@@ -5,6 +5,7 @@ var httpHelpers = require('./http-helpers');
 
 var actions = {
   'GET': function(req, res) {
+    
     httpHelpers.respond(res, req.url);
   },
 
