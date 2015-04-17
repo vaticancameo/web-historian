@@ -1,7 +1,7 @@
+#!/usr/bin/env node
 // eventually, you'll have some code here that uses the code in `archive-helpers.js`
 // to actually download the urls you want to download.
 var archive = require('../helpers/archive-helpers');
-
 // iterate over sites.txt
 // if site !archived then archive it
 var urls;
